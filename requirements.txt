@@ -1,0 +1,3 @@
+django-mptt
+django-imagekit
+git+https://github.com/AliYmn/django-ckeditor

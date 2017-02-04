@@ -91,3 +91,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+.idea/
+.idea/vcs.xml/
+
+blog/migrations/0001_initial.py
+db.sqlite3

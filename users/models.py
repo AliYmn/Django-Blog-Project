@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # django models
 from django.db import models
 #User genişletme

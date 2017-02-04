@@ -38,7 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+
     'blog',
+
+    'mptt',
+    'ckeditor',
+    'ckeditor_uploader',
+
+
 ]
 
 MIDDLEWARE = [
@@ -106,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-US'
 
 TIME_ZONE = 'UTC'
 
@@ -118,11 +125,52 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 
+# static
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# media
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
+MEDIA_URL = '/media/'
 
 #yeni user model
 AUTH_USER_MODEL = 'users.User'
 
+
+# config ckeditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono-lisa',
+        'toolbar': 'full',
+        'extraPlugins': ','.join(
+            [
+                # add the follow plugins
+                'autosave',
+                'codesnippet',
+                'widget',
+                'dialog',
+            ]),
+    }
+}
+
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_UPLOAD_SLUGIFY_FILENAME = True
+CKEDITOR_JQUERY_URL = 'http://libs.baidu.com/jquery/2.0.3/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/post/"
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+AWS_QUERYSTRING_AUTH = False
+
+#Resim kalitesi
+IMAGE_QUALITY = 40
+# Küçük resim boyutu
+THUMBNAIL_SIZE=(300,300)
