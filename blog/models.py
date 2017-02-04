@@ -35,7 +35,7 @@ class Category(MPTTModel):
     url = models.CharField(max_length=500,null=True, blank=True)
 
     #Öne çıkan görsel
-    image =  ProcessedImageField(upload_to='uploads/category/',options={'quality': 30})
+    image =  ProcessedImageField(upload_to='uploads/category/',options={'quality': 30},blank=True)
 
     class Meta:
         verbose_name_plural = "Kategoriler"

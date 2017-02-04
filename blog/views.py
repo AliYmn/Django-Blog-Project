@@ -46,7 +46,7 @@ class BlogListView(ListView):
     queryset = Post.objects.all().filter(is_active=True).order_by('-time')
     context_object_name = 'post_obj'
     template_name = 'blog_list.html'
-     = 5
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(BlogListView, self).get_context_data(**kwargs)
