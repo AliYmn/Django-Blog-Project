@@ -46,7 +46,7 @@ class BlogListView(ListView):
     queryset = Post.objects.all().filter(is_active=True).order_by('-time')
     context_object_name = 'post_obj'
     template_name = 'blog_list.html'
-    paginate_by = 5
+     = 5
 
     def get_context_data(self, **kwargs):
         context = super(BlogListView, self).get_context_data(**kwargs)
@@ -68,7 +68,7 @@ class CategoryView(ListView):
         model = Post
         template_name = 'category_page.html'
         context_object_name = 'post_obj'
-        paginate_by = 1
+        paginate_by = 3
         def get_queryset(self, *args, **kwargs):
             return Post.objects.filter(category_list__title=self.kwargs['slug'])
 
