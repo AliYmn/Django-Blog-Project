@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- SEO -->
+{% block title %}Ali Yaman Kimdir?{% endblock %}
+{% block meta_title %}Ali Yaman Kimdir?{% endblock %}
+{% block description %}Ali Yaman Kişisel blog hakkında kişisel bilgiler bulunmaktadır. {% endblock %}
+{% block keywords %}kişisel,kişisel blog,blog,ali yaman,ali yaman kimdir,ali yaman blog,yaman blog,python developer{% endblock %}
+<!-- SEO -->
+{% block og_title %}Ali Yaman Kimdir?{% endblock %}
+{% block og_description %}Ali Yaman Kişisel blog hakkında kişisel bilgiler bulunmaktadır. {% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
+
+
+{% block category %}
+<li class="dropdown">
+          <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              {% for i in category %}
+            <li><a href="/kategori/{{ i.url }}">{{ i.title }}</a></li>
+              {% endfor %}
+          </ul>
+        </li>
+{% endblock %}
+
+{% block content %}
+	<!-- +++++ Welcome Section +++++ -->
+    {% for i in category_post %}
+	<div id="ww">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+
+					<h3><i class="{{ i.icon }}" aria-hidden="true"> {{ i.title }}</i></h3>
+                        <p>{{ i.description }}</p>
+
+				</div><!-- /col-lg-8 -->
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /ww -->
+
+    {% endfor %}
+	<!-- +++++ Projects Section +++++ -->
+    {% if post_obj %}
+        <div class="container pt">
+        <div class="row mt centered">
+            {% for i in post_obj %}
+			<div class="col-lg-4">
+				<a class="zoom green" href="/{{ i.url }}"><img width="500" height="200" src="{{ i.image.url }}" alt="" /></a>
+				<p>{{ i.title }}</p>
+			</div>
+            {% endfor %}
+        {% else %}
+        <center><h3>Bu kategoride içerik bulunmamaktadır.</h3></center>
+    {% endif %}
+
+		</div><!-- /row -->
+
+{% if is_paginated %}
+<div class="pagination-wrapper">
+    <ul class="pager">
+    {% if page_obj.has_previous %}
+        <li class="blog-pagination"><a href="?page={{ page_obj.previous_page_number }}">Geri</a></li>
+    {% endif %}
+    {% for page in page_numbers %}
+        {% if page %}
+            {% ifequal page page_obj.number %}
+                <li class="disabled"><a href="#">{{ page }}</a></li>
+            {% else %}
+                <li><a href="?page={{ page }}">{{ page }}</a></li>
+            {% endifequal %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <li class="blog-pagination"><a href="?page={{ page_obj.next_page_number }}">İleri</a></li>
+    {% endif %}
+    </ul>
+</div>
+{% endif %}
+
+	</div><!-- /container -->
+
+{% endblock %}
+
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+
+{% endfor %}
+
+{% endblock %}

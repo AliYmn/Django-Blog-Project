@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr-TR">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- SEO -->
+    <meta name="author" content="Ali Yaman"/>
+    <meta name="owner" content="Ali Yaman"/>
+    <meta name="copyright" content="(c) 2016"/>
+    <meta name="robots" content="noodp"/>
+    <meta name="title" content="{% block meta_title %}{% endblock %}"/>
+    <meta name="description" content="{% block description %}{% endblock %}"/>
+    <meta name="keywords" content="{% block keywords %}{% endblock %}"/>
+
+  <!-- Sorcial -->
+    <meta property="og:title" content="{% block og_title %}{% endblock %}"/>
+    <meta property="og:description" content="{% block og_description %}{% endblock %}"/>
+    <meta property="og:url" content="{% block og_url %}{% endblock %}"/>
+    <meta property="og:site_name" content="{% block og_site_name %}{% endblock %} "/>
+    <meta property="og:image" content="{% block og_image %}{% endblock %}"/>
+    <meta property="og:locale" content="tr_TR"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image:width" content="870"/>
+    <meta property="og:image:height" content="382"/>
+  <!-- SEO -->
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{%  static 'css/font-awesome.css' %}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'js/hover.zoom.js' %}"></script>
+    <script src="{% static 'js/hover.zoom.conf.js' %}"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home-list' %}"><i class="fa fa-wheelchair-alt" aria-hidden="true"></i> Ali Yaman</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Ana Sayfa</a></li>
+            <li><a href="/hakkimda/">Hakkımda</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/iletisim">İletişim</a></li>
+            {% block category %}{% endblock %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+{% block content %}
+    içerik kısmı
+{% endblock %}
+	<!-- +++++ Footer Section +++++ -->
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h4>Hakkımda</h4>
+					<p>
+						Yazılım ile ilgilenmeyi sever,<br/>
+						aynı zamanda elektronik ilgisi büyüktür, <br/>
+						ama daha çok web geliştirmeyi tercih eder.
+					</p>
+				</div><!-- /col-lg-4 -->
+
+				<div class="col-lg-4">
+					<h4>Son Yazılarım</h4>
+					<p>
+                        {% block last_content %}{% endblock %}
+					</p>
+				</div><!-- /col-lg-4 -->
+
+				<div class="col-lg-4">
+					<h4>Sosyal Medya Hesaplarım</h4>
+    			    <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a href="/sitemap.xml" class="icoRss" title="Sitemap"><i class="fa fa-sitemap"></i></a></li>
+                            <li><a href="https://www.facebook.com/aliymn44" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/aliymn44" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com/aliymn44" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="https://www.facebook.com/aliymn44" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+				    </div>
+				</div><!-- /col-lg-4 -->
+
+			</div>
+
+		</div>
+	</div>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

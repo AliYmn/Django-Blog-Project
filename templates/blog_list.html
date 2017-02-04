@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- SEO -->
+{% block title %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block meta_title %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block description %}Ali Yaman Kişisel blog hakkında kişisel rastgele yazılar bulunmaktadır.{% endblock %}
+{% block keywords %}kişisel blog,yazılımcının günlüğü,kişisel yazılar,kişisel,blog,portal,kişisel portal{% endblock %}
+<!-- SEO -->
+{% block og_title %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block og_description %}Ali Yaman Kişisel blog hakkında kişisel rastgele yazılar bulunmaktadır.{% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
+
+{% block category %}
+<li class="dropdown">
+          <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              {% for i in category %}
+            <li><a href="/kategori/{{ i.url }}">{{ i.title }}</a></li>
+              {% endfor %}
+          </ul>
+        </li>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row-fluid top30 pagetitle">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-12"><br></div>
+
+
+    </div>
+
+  </div>
+
+
+
+</div>
+<div class="container">
+
+
+  <div class="row">
+
+     {% for i in post_obj %}
+      <div class="row">
+        </div>
+        <div class="col-sm-12">
+          <h3 class="title"><a href="/{{ i.url }}">{{ i.title }}</a></h3>
+            <span class="title">{{ i.content | safe | truncatechars_html:300 }}</span>
+        <hr>
+          <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Etiketler :  <a href="/{{ i.url }}">{{ i.tags }}</a></p>
+
+        </div>
+
+    {% endfor %}
+<hr>
+
+{% if is_paginated %}
+<div class="pagination-wrapper">
+    <ul class="pager">
+    {% if page_obj.has_previous %}
+        <li class="blog-pagination"><a href="?page={{ page_obj.previous_page_number }}">Geri</a></li>
+    {% endif %}
+    {% for page in page_numbers %}
+        {% if page %}
+            {% ifequal page page_obj.number %}
+                <li class="disabled"><a href="#">{{ page }}</a></li>
+            {% else %}
+                <li><a href="?page={{ page }}">{{ page }}</a></li>
+            {% endifequal %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <li class="blog-pagination"><a href="?page={{ page_obj.next_page_number }}">İleri</a></li>
+    {% endif %}
+    </ul>
+</div>
+{% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+
+{% endfor %}
+
+{% endblock %}

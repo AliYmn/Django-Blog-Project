@@ -1,3 +1,5 @@
+django
 django-mptt
 django-imagekit
+pillow
 git+https://github.com/AliYmn/django-ckeditor

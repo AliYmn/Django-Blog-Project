@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block meta_title %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block description %}Ali Yaman Kişisel blog hakkında kişisel rastgele yazılar bulunmaktadır.{% endblock %}
+{% block keywords %}kişisel blog,yazılımcının günlüğü,kişisel yazılar,kişisel,blog,portal,kişisel portal{% endblock %}
+<!-- SEO -->
+{% block og_title %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block og_description %}Ali Yaman Kişisel blog hakkında kişisel rastgele yazılar bulunmaktadır.{% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
+
+{% block content %}
+    <!-- +++++ Contact Section +++++ -->
+
+	<div class="container pt">
+		<div class="row mt">
+			<div class="col-lg-6 col-lg-offset-3 centered">
+				<h3>Bana Ulaş!</h3>
+				<hr>
+				<p>Bana ulaşmak istiyorsan, aşşağıdaki formu doldurup yollayabilirsin.</p>
+			</div>
+		</div>
+		<div class="row mt">
+			<div class="col-lg-8 col-lg-offset-2">
+				<form role="form">
+				  <div class="form-group">
+				    <input type="name" class="form-control" id="NameInputEmail1" placeholder="Adınız">
+				    <br>
+				  </div>
+				  <div class="form-group">
+				    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="E-posta adresiniz">
+				    <br>
+				  </div>
+				  <div class="form-group">
+				    <input type="email" class="form-control" id="subjectEmail1" placeholder="Başlık">
+				    <br>
+				  </div>
+				  <textarea class="form-control" rows="6" placeholder="İçerik"></textarea>
+				    <br>
+				  <button type="submit" class="btn btn-success">Yolla</button>
+				</form>
+			</div>
+		</div><!-- /row -->
+	</div><!-- /container -->
+{% endblock %}
+
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+
+{% endfor %}
+
+{% endblock %}

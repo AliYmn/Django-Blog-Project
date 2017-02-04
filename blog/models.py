@@ -9,27 +9,33 @@ from imagekit.processors import ResizeToFill
 
 class Category(MPTTModel):
     # Kategori adı
-    title = models.CharField(max_length=500,null=True,unique=True,
-                                     verbose_name="Kategori Adı",help_text="Kategori adını belirleyin.")
+    title = models.CharField(max_length=500,
+                             null=True,unique=True,verbose_name="Kategori Adı",
+                             help_text="Kategori adını belirleyin.")
     # Kategori keywords
     tags = models.CharField(max_length=500,null=True,
-                                         verbose_name="Anahtar Kelimeler",help_text="virgül (,) ile ayırarak belirtin.")
+                            verbose_name="Anahtar Kelimeler",
+                            help_text="virgül (,) ile ayırarak belirtin.")
     # Kategori açıklama
     description = models.CharField(max_length=500,null=True,
-                                   verbose_name="Açıklama",help_text="Kategori hakkında kısa açıklama belirtin.")
+                                   verbose_name="Açıklama",
+                                   help_text="Kategori hakkında kısa açıklama belirtin.")
 
     # Kategori fa-fa icon
-    icon = models.CharField(max_length=100,null=True,help_text='fa-fa icon',verbose_name="Icon")
+    icon = models.CharField(max_length=100,null=True,
+                            help_text='fa-fa icon',verbose_name="Icon")
 
     #Alt kategori :
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,
-                            verbose_name="Alt Kategori",help_text="Alt kategori belirleyebilirsiniz.")
+    parent = TreeForeignKey('self', null=True, blank=True,
+                            related_name='children', db_index=True,
+                            verbose_name="Alt Kategori",
+                            help_text="Alt kategori belirleyebilirsiniz.")
 
     # Kategori slug url oluşturma.
     url = models.CharField(max_length=500,null=True, blank=True)
 
     #Öne çıkan görsel
-    image =  ProcessedImageField(upload_to='uploads/category/img',options={'quality': 30})
+    image =  ProcessedImageField(upload_to='uploads/category/',options={'quality': 30})
 
     class Meta:
         verbose_name_plural = "Kategoriler"
@@ -57,31 +63,33 @@ class Post(models.Model):
     #İçerik
     content = RichTextUploadingField(verbose_name="İçerik",help_text="İçeriğiniz")
     #İçerik Anahtarı
-    keywords = models.CharField(max_length=500, null=True,
+    tags = models.CharField(max_length=500, null=True,
                                 verbose_name="Anahtar Kelime",help_text="İçerik anahtarlarınız.")
     #açıklama
     description = models.TextField(null=True,verbose_name="Açıklama",help_text="description")
     #öne çıkan görsel
-    image = ProcessedImageField(upload_to='uploads/blog/img',
+    image = ProcessedImageField(upload_to='uploads/blog/',
                                            processors=[ResizeToFill(300, 350)],
                                            format='JPEG',
-                                           options={'quality': 50},verbose_name="Resim",help_text="Öne çıkan görseli oluşturur.")
+                                           options={'quality': 50},verbose_name="Öne Çıkan Görsel",
+                                            help_text="Öne çıkan görseli oluşturur.")
     #kategoriler
-    category_list = TreeForeignKey(Category, null=True, blank=True, db_index=True,verbose_name="Kategoriler")
+    category_list = models.ForeignKey(Category, null=True, blank=True,
+                                   db_index=True,verbose_name="Kategoriler")
     #url
-    seo_url = models.CharField(max_length=500, null=True, blank=True, verbose_name='Seo_URL : (Otomatik doldurur)')
+    url = models.CharField(max_length=500, null=True, blank=True)
     #yayınlama durumu
-    is_active = models.BooleanField(default=False,verbose_name="Yayınla",help_text="Aktif olursa içerik yayınlanır.")
+    is_active = models.BooleanField(default=False,verbose_name="Yayınla",
+                                    help_text="Aktif olursa içerik yayınlanır.")
 
     class Meta:
         verbose_name_plural = "İçerik Yaz"
         ordering = ('title',)
 
     def __str__(self):
-        return 'Başlık : {}'.format(self.title)
+        return '{}'.format(self.title)
 
     def save(self, *args, **kwargs):
-        self.seo_url = slugify(self.title)
+        self.url = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
-
 

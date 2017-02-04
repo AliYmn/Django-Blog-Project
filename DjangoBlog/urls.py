@@ -15,14 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from blog.views import hello
+from blog.views import (HomeListView,PostDetailView,
+                        AboutTemplateView,BlogListView,
+                        ContactView,CategoryView)
 from django.conf import settings
 from django.views.static import serve
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', hello),
+    url(r'^$', HomeListView.as_view(),name="home-list"),
+    url(r'^hakkimda/', AboutTemplateView.as_view(), name="about"),
+    url(r'^iletisim/', ContactView.as_view(), name="about"),
+    url(r'^blog/', BlogListView.as_view(), name="about"),
+    url(r'^kategori/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='list-detail'),
+
+    url(r'^(?P<slug>[-\w]+)/$', PostDetailView.as_view(), name='list-detail'),
+
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
 ]

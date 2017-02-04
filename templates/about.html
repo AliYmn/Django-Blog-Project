@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- SEO -->
+{% block title %}Ali Yaman Kimdir?{% endblock %}
+{% block meta_title %}Ali Yaman Kimdir?{% endblock %}
+{% block description %}Ali Yaman Kişisel blog hakkında kişisel bilgiler bulunmaktadır. {% endblock %}
+{% block keywords %}kişisel,kişisel blog,blog,ali yaman,ali yaman kimdir,ali yaman blog,yaman blog,python developer{% endblock %}
+<!-- SEO -->
+{% block og_title %}Ali Yaman Kimdir?{% endblock %}
+{% block og_description %}Ali Yaman Kişisel blog hakkında kişisel bilgiler bulunmaktadır. {% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
+
+{{% block content %}
+
+<!-- +++++ Welcome Section +++++ -->
+	<div id="ww">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+					<img src="{%  static 'img/user.png' %}" alt="Stanley">
+					<h3>Merhaba! </h3>
+
+                    <p>Herzaman bilginin gücüne inanlardan oldum , araştirmalarım ve deneyimlerimlerimi sizlere sunmayı amaçlıyorum.
+                    İstanbul Üniversitesi Kontrol ve Otomasyon Öğrencisiyim Elektronik ve Programlama ile ilgim var.
+                    İlgi alanımlarla ilgili deneyimleri size sunmayı amaçlıyorum.</p>
+
+				</div><!-- /col-lg-8 -->
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /ww -->
+
+
+	<!-- +++++ Information Section +++++ -->
+
+	<div class="container pt">
+		<div class="row mt centered">
+			<div class="col-lg-3">
+				<span class="glyphicon glyphicon-briefcase"></span>
+				<p>İstanbul Üniversitesi Kontrol ve Otomasyon bölümünde okumaktayım.</p>
+			</div>
+
+			<div class="col-lg-3">
+				<span class="glyphicon glyphicon-user"></span>
+				<p>Çalışmadan önce araştırıp, yapacaklarımı liste çıkarıp kullanıcı analizi yaparak başlarım. Bu özelliğimi
+                çok seviyorum :)</p>
+			</div>
+
+			<div class="col-lg-3">
+				<span class="glyphicon glyphicon-pencil"></span>
+				<p>Öğrendiklerimi yazmayı çok seviyorum. Çünkü bilginin paylaşdıkça büyüdüğünü çok iyi biliyorum.</p>
+			</div>
+
+			<div class="col-lg-3">
+				<span class="glyphicon glyphicon-headphones"></span>
+				<p>Ruhun gıdası müziktir. Çalışırken hep müzik dinlerim. Müziksiz bir hayat düşünemiyorum...</p>
+			</div>
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-6">
+				<h4>Hakkımda</h4>
+                <p>
+                Küçük yaşlarda <b>bilgisayar</b> ile tanıştım. Tanıştığım zamanlarda bir oyun makinası olarak görmekteydim.
+                Sürekli oyun oynadım. Tabi oyun bir çok tecrübe kazandırdı... Bir çok sistemsel sorunlarını tanıyıp gördüm. Bu
+                benim ilerki zamanlarda sorunları çözmemde yardımcı olacaktı. Orta okul zamanlarında bir arkadaş gazı ile
+                pvp server açtık, dolasıyla <b>SQL</b> ile yeni yeni tanışmıştım. Php ile bir takım düzetlemeler <b>html-css</b> ile küçük
+                düzeltmeler yapiyordum.
+                <br><br>
+                Meslek lisesi okuduğum için lise-2'de bölüm seçme dönemi oldu. Elektrik-Elektronik teknolojisini kazanmıştım.
+                Okulda hocalarımızın sayesinde ve dersin zevkli gelmesiyle birlikte yazılıma başlamıştık. Tek amacımız
+                Elektronikleri konuşturmaktı. İlk C/C++ ile başlayip C# , php ve python devam etti.
+                şöyleki, artık <b>yaşamın her noktasında</b> yazılımın olacağını kendime söylemiştim.
+                Ve.. Halen yazmaktayım. Daha çok web geliştirme yönünde ilerlemekteyim ama elektronik ile ilgili bir takım
+                projelerde yapmaktayım.
+                </p>
+			</div><!-- /colg-lg-6 -->
+
+
+
+			<div class="col-lg-6">
+				<h4>Yeteneklerim</h4>
+            C/C++
+            <div class="progress">
+                <div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 65%;">
+                    <span class="sr-only">65% Complete</span>
+                </div>
+            </div>
+
+				Python
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+						<span class="sr-only">80% Complete</span>
+					</div>
+				</div>
+
+				Django
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+						<span class="sr-only">85% Complete</span>
+					</div>
+				</div>
+
+				HTML + CSS
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">
+						<span class="sr-only">95% Complete</span>
+					</div>
+				</div>
+
+                Javascript + Jquery
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+						<span class="sr-only">70% Complete</span>
+					</div>
+				</div>
+
+                C# - Java
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+						<span class="sr-only">50% Complete</span>
+					</div>
+				</div>
+
+                Arduino
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+						<span class="sr-only">70% Complete</span>
+					</div>
+				</div>
+
+                PHP - Wordpress
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+						<span class="sr-only">50% Complete</span>
+					</div>
+				</div>
+                ARES - ISIS - PLC
+				<div class="progress">
+					<div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+						<span class="sr-only">70% Complete</span>
+					</div>
+				</div>
+
+
+			</div><!-- /col-lg-6 -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+
+
+{% endblock %}
+
+
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+
+{% endfor %}
+
+{% endblock %}

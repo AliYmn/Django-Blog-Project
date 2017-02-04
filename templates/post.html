@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post_obj.title }}{% endblock %}
+{% block meta_title %}{{ post_obj.title }}{% endblock %}
+{% block description %}{{ post_obj.description }}{% endblock %}
+{% block keywords %}{{ post_obj.tags }}{% endblock %}
+<!-- SEO -->
+{% block og_title %}{{ post_obj.title }}{% endblock %}
+{% block og_description %}{{ post_obj.description }}{% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_image %}{{ post_obj.image.url }}{% endblock %}
+{% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
+
+{% block category %}
+<li class="dropdown">
+          <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              {% for i in category %}
+            <li><a href="/kategori/{{ i.url }}">{{ i.title }}</a></li>
+              {% endfor %}
+          </ul>
+        </li>
+{% endblock %}
+{% block content %}
+
+	<!-- +++++ Projects Section +++++ -->
+	<div class="container pt ">
+		<div class="row mt">
+			<div class="col-lg-12 col-lg-offset-0 centered">
+<div class="col-sm-12"><a href="/{{ post_obj.url }}" class=""><img src="{{ post_obj.image.url }}" class="img-responsive"></a></div>
+				<h3>{{ post_obj.title }}</h3>
+				<hr>
+                {{ post_obj.content | safe }}
+			</div>
+		</div>
+		<div class="row mt centered">
+        <p><bt>Yazar : <span class="renk">Ali Yaman</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
+		</div><!-- /row -->
+	</div><!-- /container -->
+
+{% endblock %}
+
+
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+
+{% endfor %}
+
+{% endblock %}
