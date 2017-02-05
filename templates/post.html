@@ -13,9 +13,6 @@
 {% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
 
 {% block category %}
-    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css' %}" />
-    <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
 <li class="dropdown">
           <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -25,6 +22,7 @@
           </ul>
         </li>
 {% endblock %}
+    <script>hljs.initHighlightingOnLoad();</script>
 {% block content %}
 
 	<!-- +++++ Projects Section +++++ -->
@@ -38,7 +36,7 @@
 			</div>
 		</div>
 		<div class="row mt centered">
-        <p><bt>Yazar : <span class="renk">Ali Yaman</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
+        <p><bt>Yazar : <span class="renk">Ali Yaman</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
 		</div><!-- /row -->
 	</div><!-- /container -->
 
@@ -53,4 +51,9 @@
 
 {% endfor %}
 
+{% endblock %}
+
+{% block footer %}
+    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css' %}" />
+    <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
 {% endblock %}
