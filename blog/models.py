@@ -97,3 +97,37 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.url = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
+
+class SiteInfo(models.Model):
+    #Site adı
+    title = models.CharField(max_length=50, null=True, unique=True,
+                             verbose_name="Başlık",help_text="Site başlığı")
+    #Site Sloganı
+    slogan = models.CharField(max_length=50, null=True, unique=True,
+                             verbose_name="Slogan", help_text="Site slogan")
+
+    #Site Yazarı
+    author = models.CharField(max_length=50, null=True, unique=True,
+                             verbose_name="Yazar",help_text="Yazar adı")
+
+    #Site Keywords
+    tags = models.CharField(max_length=50, null=True, unique=True,
+                             verbose_name="Anahatar Kelime",help_text="(,) virgül ile ayırarak yazınız.")
+
+    #Site açıklama
+    description = models.TextField(null=True, unique=True,
+                             verbose_name="Açıklama",help_text="Site açıklama")
+
+    #site default resim
+    image = ProcessedImageField(upload_to='uploads/blog/',
+                                           format='JPEG',
+                                           processors=[ResizeToFill(870, 382)],
+                                           options={'quality': 40},verbose_name="Default Resim",
+                                            help_text="Büyük resim yükleyin.",blank=True)
+
+    class Meta:
+        verbose_name_plural = "Site Bilgileri"
+        ordering = ('title',)
+
+    def __str__(self):
+        return '{}'.format(self.title)

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_tags %}
 
 {% block title %}{{ post_obj.title }} - Kişisel Blog{% endblock %}
 {% block meta_title %}{{ post_obj.title }}{% endblock %}
@@ -10,7 +11,7 @@
 {% block og_description %}{{ post_obj.description }}{% endblock %}
 {% block og_url %}{{request.get_raw_uri}}{% endblock %}
 {% block og_image %}{{ post_obj.image.url }}{% endblock %}
-{% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block og_site_name %}{% site_title %} - {% site_slogan %}{% endblock %}
 
 {% block category %}
 <li class="dropdown">
@@ -36,7 +37,7 @@
 			</div>
 		</div>
 		<div class="row mt centered">
-        <p><bt>Yazar : <span class="renk">Ali Yaman</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
+        <p><bt>Yazar : <span class="renk">{% site_author %}</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
 		</div><!-- /row -->
 	</div><!-- /container -->
 
