@@ -2,7 +2,6 @@
 from django.db import models
 from django.utils.text import slugify
 from mptt.models import MPTTModel, TreeForeignKey
-from imagekit.models import ProcessedImageField
 from ckeditor_uploader.fields import RichTextUploadingField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
@@ -48,9 +47,12 @@ class Category(MPTTModel):
         #dönüş değeri
         return self.title
 
+    def get_absolute_url(self):
+        return "/kategori/{}".format(self.url)
 
     def save(self, *args, **kwargs):
         self.url = slugify(self.title, allow_unicode=False)
+        self.title = str(self.title).lower()
         super(Category, self).save(*args, **kwargs)
 
 class Post(models.Model):
@@ -89,7 +91,9 @@ class Post(models.Model):
     def __str__(self):
         return '{}'.format(self.title)
 
+    def get_absolute_url(self):
+        return "/{}".format(self.url)
+
     def save(self, *args, **kwargs):
         self.url = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
-

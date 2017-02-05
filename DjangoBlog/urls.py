@@ -20,6 +20,18 @@ from blog.views import (HomeListView,PostDetailView,
                         ContactView,CategoryView)
 from django.conf import settings
 from django.views.static import serve
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+from blog.models import Post,Category
+
+post_dict = {
+    'queryset': Post.objects.all(),
+    'date_field': 'time',
+}
+
+category_dict = {
+    'queryset':Category.objects.all(),
+}
 
 
 urlpatterns = [
@@ -29,9 +41,12 @@ urlpatterns = [
     url(r'^iletisim/', ContactView.as_view(), name="about"),
     url(r'^blog/', BlogListView.as_view(), name="about"),
     url(r'^kategori/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='list-detail'),
-
     url(r'^(?P<slug>[-\w]+)/$', PostDetailView.as_view(), name='list-detail'),
+    url(r'^sitemap_post\.xml$', sitemap,{'sitemaps': {'blog': GenericSitemap(post_dict, priority=0.6)}},
+                                                 name='django.contrib.sitemaps.views.sitemap'),
 
+    url(r'^sitemap_category\.xml$', sitemap,{'sitemaps': {'blog': GenericSitemap(category_dict, priority=0.6)}},
+                                                 name='django.contrib.sitemaps.views.sitemap'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
 ]
