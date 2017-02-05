@@ -17,7 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from blog.views import (HomeListView,PostDetailView,
                         AboutTemplateView,BlogListView,
-                        ContactView,CategoryView)
+                        ContactView,CategoryView,RobotsView)
 from django.conf import settings
 from django.views.static import serve
 from django.contrib.sitemaps import GenericSitemap
@@ -48,6 +48,8 @@ urlpatterns = [
 
     url(r'^sitemap_category\.xml$', sitemap,{'sitemaps': {'blog': GenericSitemap(category_dict, priority=0.6)}},
                                                  name='django.contrib.sitemaps.views.sitemap'),
+
+    url(r'^robots.txt/', RobotsView.as_view(), name="robots"),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
 ]

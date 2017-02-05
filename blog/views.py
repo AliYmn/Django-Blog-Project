@@ -78,3 +78,5 @@ class CategoryView(ListView):
             context['category_post'] = Category.objects.all().filter(title=self.kwargs['slug'])
             return context
 
+class RobotsView(TemplateView):
+    template_name = 'robots.html'
