@@ -96,3 +96,6 @@ ENV/
 
 blog/migrations/0001_initial.py
 db.sqlite3
+.DS_Store
+static/.DS_Store
+
