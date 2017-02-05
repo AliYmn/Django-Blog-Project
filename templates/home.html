@@ -41,7 +41,7 @@
         <center><h3>Rastgele Yazılar</h3></center>
             {% for post in post_obj %}
 			<div class="col-lg-4">
-				<a class="zoom green" href="/{{ post.url }}"><img  width="500px" height="200px"  src="http://127.0.0.1:8000/media/{{ post.image }}" alt="{{ post.title }}" /></a>
+				<a class="zoom green" href="/{{ post.url }}"><img  width="500px" height="200px"  src="{{ post.image.url }}" alt="{{ post.title }}" /></a>
 				<p>{{ post.title }}</p>
 			</div>
             {% endfor %}

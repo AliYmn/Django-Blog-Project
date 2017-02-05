@@ -69,7 +69,7 @@ class CategoryView(ListView):
         context_object_name = 'post_obj'
         paginate_by = 3
         def get_queryset(self, *args, **kwargs):
-            return Post.objects.filter(category_list__title=self.kwargs['slug'])
+            return Post.objects.filter(category_list__url=self.kwargs['slug'])
 
         def get_context_data(self, **kwargs):
             context = super(CategoryView, self).get_context_data(**kwargs)
