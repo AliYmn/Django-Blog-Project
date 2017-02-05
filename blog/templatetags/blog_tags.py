@@ -38,3 +38,7 @@ def site_description():
 @register.simple_tag
 def site_tags():
     return tags
+
+@register.simple_tag
+def site_image():
+    return image
