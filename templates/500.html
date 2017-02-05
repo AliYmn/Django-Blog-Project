@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% load static %}
+<!-- SEO -->
+{% block title %} {% site_title %} - {% site_slogan %}{% endblock %}
+{% block meta_title %} {% site_title %} - {% site_slogan %}{% endblock %}
+{% block description %}{% site_description %}{% endblock %}
+{% block keywords %}{% site_tags %}{% endblock %}
+<!-- SEO -->
+{% block og_title %}{% site_title %}{% endblock %}
+{% block og_description %}{% site_description %}{% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}{% site_title %} - {% site_slogan %}{% endblock %}
+
+{{% block content %}
+
+<!-- +++++ Welcome Section +++++ -->
+	<div id="ww">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+					<img src="{%  static 'img/user.png' %}" alt="Stanley">
+					<h3>Opps! :( </h3>
+
+                    <p>500 internal server error!</p>
+
+                    <h3>Naptin dostum sen ya?</h3>
+                    <div class="pagination-wrapper">
+                        <ul class="pager">
+                    <li class="pagination-wrapper"><a href="/">Ana Sayfa'ya Git</a></li>
+                        </ul>
+                    </div>
+				</div><!-- /col-lg-8 -->
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /ww -->
+
+			</div><!-- /col-lg-6 -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+
+
+{% endblock %}
+
+{% block son %}İLETİŞİM{% endblock %}
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+Merhaba, benle iletişim kurmak istiyorsanız <a href="/iletisim">İletişim</a> linki üzerinden kurabilirsiniz.
+Sohbet için bile yazabilirsiniz :)
+
+{% endfor %}
+
+{% endblock %}

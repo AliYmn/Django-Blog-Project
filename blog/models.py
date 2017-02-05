@@ -5,7 +5,6 @@ from mptt.models import MPTTModel, TreeForeignKey
 from ckeditor_uploader.fields import RichTextUploadingField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-
 class Category(MPTTModel):
     # Kategori adı
     title = models.CharField(max_length=500,

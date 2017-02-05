@@ -78,4 +78,3 @@ class CategoryView(ListView):
             context['category_post'] = Category.objects.all().filter(title=self.kwargs['slug'])
             return context
 
-

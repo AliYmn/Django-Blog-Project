@@ -38,7 +38,7 @@ category_dict = {
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeListView.as_view(),name="home-list"),
-    url(r'^hakkimda/', cache_page(60 * 15)(AboutTemplateView.as_view()), name="about"),
+    url(r'^hakkimda/', cache_page(300 * 15)(AboutTemplateView.as_view()), name="about"),
     url(r'^iletisim/', ContactView.as_view(), name="about"),
     url(r'^blog/', BlogListView.as_view(), name="about"),
     url(r'^kategori/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='list-detail'),
@@ -52,9 +52,8 @@ urlpatterns = [
 
 ]
 
-if settings.DEBUG:
-    urlpatterns += [
-        url(r'^media/(?P<path>.*)$', serve, {
-            'document_root': settings.MEDIA_ROOT,
-        }),
+urlpatterns += [
+url(r'^media/(?P<path>.*)$', serve, {
+    'document_root': settings.MEDIA_ROOT,
+}),
 ]
