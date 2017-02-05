@@ -58,7 +58,7 @@ class Category(MPTTModel):
 class Post(models.Model):
     #Makale başlığı
     title = models.CharField(max_length=500, null=True, unique=True,
-                             verbose_name="Başlık",help_text="İçerik başlığı")
+                             verbose_name="Başlık",help_text="makale başlığı")
     #İçerik tarihi
     time = models.DateTimeField(auto_now=False, null=True,
                                 verbose_name="Zaman",help_text="İçerik zamanı")
@@ -66,15 +66,15 @@ class Post(models.Model):
     content = RichTextUploadingField(verbose_name="İçerik",help_text="İçeriğiniz")
     #İçerik Anahtarı
     tags = models.CharField(max_length=500, null=True,
-                                verbose_name="Anahtar Kelime",help_text="İçerik anahtarlarınız.")
+                                verbose_name="Anahtar Kelime",help_text="makale anahtarlarınız.")
     #açıklama
     description = models.TextField(null=True,verbose_name="Açıklama",help_text="description")
     #öne çıkan görsel
     image = ProcessedImageField(upload_to='uploads/blog/',
-                                           processors=[ResizeToFill(300, 350)],
+                                           processors=[ResizeToFill(800, 400)],
                                            format='JPEG',
                                            options={'quality': 50},verbose_name="Öne Çıkan Görsel",
-                                            help_text="Öne çıkan görseli oluşturur.")
+                                            help_text="Öne çıkan görseli oluşturur.",blank=True)
     #kategoriler
     category_list = models.ForeignKey(Category, null=True, blank=True,
                                    db_index=True,verbose_name="Kategoriler")
@@ -82,10 +82,10 @@ class Post(models.Model):
     url = models.CharField(max_length=500, null=True, blank=True)
     #yayınlama durumu
     is_active = models.BooleanField(default=False,verbose_name="Yayınla",
-                                    help_text="Aktif olursa içerik yayınlanır.")
+                                    help_text="Aktif olursa makale yayınlanır.")
 
     class Meta:
-        verbose_name_plural = "İçerik Yaz"
+        verbose_name_plural = "Makale Yaz"
         ordering = ('title',)
 
     def __str__(self):

@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
 
-    'users',
     'blog',
 
     'mptt',
@@ -142,8 +141,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
 MEDIA_URL = '/media/'
 
-#yeni user model
-AUTH_USER_MODEL = 'users.User'
 
 
 # config ckeditor
@@ -173,7 +170,7 @@ CKEDITOR_ALLOW_NONIMAGE_FILES = False
 AWS_QUERYSTRING_AUTH = False
 
 #Resim kalitesi
-IMAGE_QUALITY = 60
+IMAGE_QUALITY = 50
 # Küçük resim boyutu
 THUMBNAIL_SIZE=(300,300)
 

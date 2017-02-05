@@ -5,7 +5,6 @@ from .models import Post,Category
 # Create your views here.
 
 
-
 class HomeListView(ListView):
 
     model = Post
