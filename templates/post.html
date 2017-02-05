@@ -39,6 +39,8 @@
 		<div class="row mt centered">
         <p><bt>Yazar : <span class="renk">{% site_author %}</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
 		</div><!-- /row -->
+    {% load disqus_tags %}
+    {% disqus_show_comments %}
 	</div><!-- /container -->
 
 {% endblock %}

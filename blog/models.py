@@ -100,18 +100,18 @@ class Post(models.Model):
 
 class SiteInfo(models.Model):
     #Site adı
-    title = models.CharField(max_length=50, null=True, unique=True,
+    title = models.CharField(max_length=100, null=True, unique=True,
                              verbose_name="Başlık",help_text="Site başlığı")
     #Site Sloganı
-    slogan = models.CharField(max_length=50, null=True, unique=True,
+    slogan = models.CharField(max_length=100, null=True, unique=True,
                              verbose_name="Slogan", help_text="Site slogan")
 
     #Site Yazarı
-    author = models.CharField(max_length=50, null=True, unique=True,
+    author = models.CharField(max_length=100, null=True, unique=True,
                              verbose_name="Yazar",help_text="Yazar adı")
 
     #Site Keywords
-    tags = models.CharField(max_length=50, null=True, unique=True,
+    tags = models.CharField(max_length=200, null=True, unique=True,
                              verbose_name="Anahatar Kelime",help_text="(,) virgül ile ayırarak yazınız.")
 
     #Site açıklama
