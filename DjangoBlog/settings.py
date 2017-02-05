@@ -40,14 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
+
     'blog',
-    'disqus',
 
     'mptt',
     'ckeditor',
     'ckeditor_uploader',
-
-
+    'disqus',
 
 ]
 

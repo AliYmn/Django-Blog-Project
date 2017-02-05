@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% load blog_tags %}
 <!-- SEO -->
-{% block title %}Ali Yaman - Kişisel Blog{% endblock %}
-{% block meta_title %}Ali Yaman - Kişisel Blog{% endblock %}
-{% block description %}Ali Yaman Kişisel blog hakkında kişisel rastgele yazılar bulunmaktadır.{% endblock %}
-{% block keywords %}kişisel blog,yazılımcının günlüğü,kişisel yazılar,kişisel,blog,portal,kişisel portal{% endblock %}
+
+{% block title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block meta_title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block description %}{% site_description %}{% endblock %}
+{% block keywords %}{% site_tags %}{% endblock %}
 <!-- SEO -->
-{% block og_title %}Ali Yaman - Kişisel Blog{% endblock %}
-{% block og_description %}Ali Yaman Kişisel blog hakkında kişisel rastgele yazılar bulunmaktadır.{% endblock %}
+{% block og_title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block og_description %}{% site_description %}{% endblock %}
 {% block og_url %}{{request.get_raw_uri}}{% endblock %}
-{% block og_site_name %}Ali Yaman - Kişisel Blog{% endblock %}
+{% block og_site_name %}{% site_title %} - {% site_slogan %}{% endblock %}
 
 
 {% block category %}

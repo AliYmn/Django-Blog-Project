@@ -1,4 +1,5 @@
 {% load static %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="tr-TR">
 <head>
@@ -39,7 +40,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'home-list' %}"><i class="fa fa-rocket" aria-hidden="true"></i> Ali Yaman</a>
+      <a class="navbar-brand" href="{% url 'home-list' %}"><i class="fa fa-rocket" aria-hidden="true"></i> {% site_title %} | {% site_slogan %}</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
