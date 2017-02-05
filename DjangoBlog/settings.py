@@ -179,3 +179,5 @@ THUMBNAIL_SIZE=(300,300)
 DISQUS_API_KEY = 'ApiKey'
 #Subdomain
 DISQUS_WEBSITE_SHORTNAME = 'aliyaman'
+#Sıte ID, admin panelden sites bölümden bilgileri değişin.
+SITE_ID = 1

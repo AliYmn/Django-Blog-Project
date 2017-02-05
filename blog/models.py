@@ -94,7 +94,7 @@ class Post(models.Model):
         return "/{}".format(self.url)
 
     def save(self, *args, **kwargs):
-        self.url = slugify(self.title)
+        self.url = slugify(self.title,allow_unicode=False)
         super(Post, self).save(*args, **kwargs)
 
 class SiteInfo(models.Model):
@@ -122,7 +122,7 @@ class SiteInfo(models.Model):
                                            format='JPEG',
                                            processors=[ResizeToFill(870, 382)],
                                            options={'quality': 40},verbose_name="Default Resim",
-                                            help_text="Büyük resim yükleyin.",blank=True)
+                                            help_text="Büyük resim yükleyin.")
 
     class Meta:
         verbose_name_plural = "Site Bilgileri"
