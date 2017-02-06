@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load blog_tags %}
+{% load disqus_tags %}
 
 
-{% block title %}{{ post_obj.title }} - Kişisel Blog{% endblock %}
+{% block title %}{{ post_obj.title }} | {% site_slogan %}{% endblock %}
 {% block meta_title %}{{ post_obj.title }}{% endblock %}
 {% block description %}{{ post_obj.description }}{% endblock %}
 {% block keywords %}{{ post_obj.tags }}{% endblock %}
@@ -11,53 +12,45 @@
 {% block og_title %}{{ post_obj.title }}{% endblock %}
 {% block og_description %}{{ post_obj.description }}{% endblock %}
 {% block og_url %}{{request.get_raw_uri}}{% endblock %}
-{% block og_image %}{{ post_obj.image.url }}{% endblock %}
-{% block og_site_name %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block og_image %}{{request.get_raw_uri}}{{ post_obj.image.url }}{% endblock %}
+{% block og_site_name %}{{ post_obj.title }} | {% site_slogan %}{% endblock %}
 
 {% block category %}
 <li class="dropdown">
-          <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-              {% for i in category %}
-            <li><a href="/kategori/{{ i.url }}">{{ i.title }}</a></li>
-              {% endfor %}
-          </ul>
-        </li>
+<a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
+<ul class="dropdown-menu">
+{% for i in category %}
+<li><a href="/kategori/{{ i.url }}">{{ i.title }}</a></li>
+{% endfor %}
+</ul>
+</li>
 {% endblock %}
-    <script>hljs.initHighlightingOnLoad();</script>
+
 {% block content %}
-
-	<!-- +++++ Projects Section +++++ -->
-	<div class="container pt ">
-		<div class="row mt">
-			<div class="col-lg-12 col-lg-offset-0">
+<script>hljs.initHighlightingOnLoad();</script>
+<div class="container pt ">
+<div class="row mt">
+<div class="col-lg-12 col-lg-offset-0">
 <div class="col-sm-12"><a href="/{{ post_obj.url }}" class=""><img src="{{ post_obj.image.url }}" class="img-responsive"></a></div>
-				<center><h3>{{ post_obj.title }}</h3></center>
-				<hr>
-                {{ post_obj.content | safe }}
-			</div>
-		</div>
-		<div class="row mt centered">
-        <p><bt>Yazar : <span class="renk">{% site_author %}</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
-		</div><!-- /row -->
-    {% load disqus_tags %}
-    {% disqus_show_comments %}
-	</div><!-- /container -->
-
+<center><h3>{{ post_obj.title }}</h3></center>
+<hr>
+{{ post_obj.content | safe }}
+</div>
+</div>
+<div class="row mt centered">
+<p><bt>Yazar : <span class="renk">{% site_author %}</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
+{% disqus_show_comments %}
+</div><!-- /row -->
+</div><!-- /container -->
 {% endblock %}
-
 
 {% block last_content %}
-
 {% for last_post in last_content %}
-
 <a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
-
 {% endfor %}
-
 {% endblock %}
 
 {% block footer %}
-    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css' %}" />
-    <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+<link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css' %}" />
+<script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
 {% endblock %}

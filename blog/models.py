@@ -73,7 +73,7 @@ class Post(models.Model):
                                            processors=[ResizeToFill(800, 400)],
                                            format='JPEG',
                                            options={'quality': 50},verbose_name="Öne Çıkan Görsel",
-                                            help_text="Öne çıkan görseli oluşturur.",blank=True)
+                                            help_text="Öne çıkan görseli oluşturur.")
     #kategoriler
     category_list = models.ForeignKey(Category, null=True, blank=True,
                                    db_index=True,verbose_name="Kategoriler")
