@@ -75,7 +75,7 @@ class CategoryView(ListView):
             context = super(CategoryView, self).get_context_data(**kwargs)
             context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
             context['category'] = Category.objects.all()
-            context['category_post'] = Category.objects.all().filter(title=self.kwargs['slug'])
+            context['category_post'] = Category.objects.all().filter(url=self.kwargs['slug'])
             return context
 
 class RobotsView(TemplateView):
