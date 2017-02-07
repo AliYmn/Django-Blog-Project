@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load disqus_tags %}
+{% load blog_tags %}
+<!-- SEO -->
+
+{% block title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block meta_title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block description %}{% site_description %}{% endblock %}
+{% block keywords %}{% site_tags %}{% endblock %}
+<!-- SEO -->
+{% block og_title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block og_description %}{% site_description %}{% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block og_image %}{{request.get_raw_uri}}{% site_image %}{% endblock %}
+
+{% block category %}
+<li class="dropdown">
+<a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
+<ul class="dropdown-menu">
+{% for i in category %}
+<li><a href="/kategori/{{ i.url }}">{{ i.title }}</a></li>
+{% endfor %}
+</ul>
+</li>
+{% endblock %}
+
+    {% block content %}
+
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+    {% for i in tags_obj %}
+        <a href="/{{ i.blog.url }}"><h1>{{ i.blog.title }}</h1></a>
+    <span class="badge">{{ i.blog.time }}</span><div class="pull-right"><span class="label label-success">{{ i.blog.site_hit }} kez okundu</span></div>
+    {{ i.blog.content|safe|truncatewords:15 }}
+    <div>
+    <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Kategori :  <a href="/kategori/{{ i.blog.category_list }}">{{ i.blog.category_list }}</a></p>
+     </div>
+    <hr>
+    {% endfor %}
+{% if is_paginated %}
+<nav>
+<ul class="pager">
+    {% if page_obj.has_previous %}
+<li class="previous blog-pagination"><a href="?page={{ page_obj.previous_page_number }}">Geri</a></li>
+{% endif %}
+{% for page in page_numbers %}
+{% if page %}
+{% ifequal page page_obj.number %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+    {% else %}
+<li><a href="?page={{ page }}">{{ page }}</a></li>
+    {% endifequal %}
+{% else %}
+    {% endif %}
+{% endfor %}
+
+    {% if page_obj.has_next %}
+<li class="next blog-pagination"><a href="?page={{ page_obj.next_page_number }}">İleri</a></li>
+{% endif %}
+</ul>
+</nav>
+    {% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endblock %}
+
+{% block last_content %}
+{% for last_post in last_content %}
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+{% endfor %}
+{% endblock %}
