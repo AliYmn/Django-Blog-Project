@@ -40,8 +40,12 @@
 <hr>
 
 {{ post_obj.content | safe }}
-<p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Etiketler :  <a href="/{{ post_obj.url }}">{{ post_obj.tags }}</a></p>
+<p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Etiketler :
 
+        {% for i in post_obj.tags_set.all %}
+        <a href="/etiket/{{ i }}">{{ i }},</a>
+        {% endfor %}
+</p>
 </div>
 </div>
 

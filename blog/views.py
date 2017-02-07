@@ -1,5 +1,5 @@
-from django.views.generic import ListView,TemplateView,DetailView,View
-from .models import Post,Category,Love,Skills,IpController
+from django.views.generic import ListView,TemplateView,DetailView
+from .models import Post,Category,Love,Skills,IpController,Tags
 
 class HomeListView(ListView):
 
@@ -87,3 +87,20 @@ class CategoryView(ListView):
 
 class RobotsView(TemplateView):
     template_name = 'robots.html'
+
+
+
+class TagsView(ListView):
+    model = Tags
+    context_object_name = 'tags_obj'
+    template_name = 'tags.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return Tags.objects.all().filter(blog__is_active=True,tags=self.kwargs['slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super(TagsView, self).get_context_data(**kwargs)
+        context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
+        context['category'] = Category.objects.all()
+        return context

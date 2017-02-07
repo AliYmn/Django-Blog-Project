@@ -32,14 +32,15 @@
 <div class="row">
 <div class="col-md-8">
     {% for i in post_obj %}
-    <h1>{{ i.title }}</h1>
-    <span class="badge">{{ i.time }}</span><div class="pull-right"><span class="label label-danger">{{ i.site_hit }} kez okundu</span></div>
+        <a href="/{{ i.url }}"><h1>{{ i.title }}</h1></a>
+    <span class="badge">{{ i.time }}</span><div class="pull-right"><span class="label label-success">{{ i.site_hit }} kez okundu</span></div>
     {{ i.content|safe|truncatewords:15 }}
     <div>
-    <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Etiketler :  <a href="/{{ i.url }}">{{ i.tags }}</a></p>
+    <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Kategori :  <a href="/kategori/{{ i.category_list }}">{{ i.category_list }}</a></p>
      </div>
     <hr>
     {% endfor %}
+
 
 </div>
     <br>
@@ -127,10 +128,17 @@
 		</div>
 </div>
 
-</div>
+<div class="col-md-4 category">
+<div class="list-group">
+  <a href="#" class="list-group-item" style="background-color: #f0f5f7;">
+   Kategoriler
+  </a>
+{% for i in category %}
+  <a href="/kategori/{{ i.url }}" class="list-group-item"><i style="font-size: 17px;" class="{{ i.icon }}" aria-hidden="true"> {{ i.title }}</i></a>
+{% endfor %}
 </div>
 
-    {% if is_paginated %}
+{% if is_paginated %}
 <nav>
 <ul class="pager">
     {% if page_obj.has_previous %}
@@ -153,6 +161,11 @@
 </ul>
 </nav>
     {% endif %}
+</div>
+
+</div>
+
+</div>
 
 </div>
 </div>

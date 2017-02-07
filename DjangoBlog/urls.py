@@ -17,7 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from blog.views import (HomeListView,PostDetailView,
                         AboutTemplateView,BlogListView,
-                        ContactView,CategoryView,RobotsView)
+                        ContactView,CategoryView,RobotsView,TagsView)
 from django.conf import settings
 from django.views.static import serve
 from django.contrib.sitemaps import GenericSitemap
@@ -42,6 +42,8 @@ urlpatterns = [
     url(r'^blog/', BlogListView.as_view(), name="about"),
     url(r'^kategori/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='list-detail'),
     url(r'^(?P<slug>[-\w]+)/$', PostDetailView.as_view(), name='post'),
+    url(r'^etiket/(?P<slug>[-\w]+)/$', TagsView.as_view(), name='tags'),
+
     url(r'^sitemap_post\.xml$', sitemap,{'sitemaps': {'blog': GenericSitemap(post_dict, priority=0.6)}},
                                                  name='django.contrib.sitemaps.views.sitemap'),
 

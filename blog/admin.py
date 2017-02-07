@@ -1,6 +1,9 @@
 from django.contrib import admin
-from .models import Category,Post,SiteInfo,Love,Skills
+from .models import Category,Post,SiteInfo,Love,Skills,Tags
 
+class TagsInline(admin.TabularInline):
+    model = Tags
+    extra = 0
 
 class PostModel(admin.ModelAdmin):
     exclude = ('url','ip',)
@@ -10,6 +13,9 @@ class PostModel(admin.ModelAdmin):
     list_filter = (
         ('is_active', admin.BooleanFieldListFilter),
     )
+    inlines= [
+        TagsInline,
+    ]
 
 class CategoryModel(admin.ModelAdmin):
     list_display = ('title','url','description','parent')

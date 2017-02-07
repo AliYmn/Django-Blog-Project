@@ -8,6 +8,10 @@ from imagekit.processors import ResizeToFill
 from ckeditor.fields import RichTextField
 from django.conf import settings
 
+
+
+
+
 class IpController(models.Model):
     remote = models.CharField(max_length=100)
     http_x =  models.CharField(max_length=1000)
@@ -38,7 +42,7 @@ class Category(MPTTModel):
 
     # Kategori fa-fa icon
     icon = models.CharField(max_length=100,null=True,
-                            help_text='fa-fa icon',verbose_name="Icon")
+                            help_text='fa fa-bookmark',verbose_name="Icon")
 
     #Alt kategori :
     parent = TreeForeignKey('self', null=True, blank=True,
@@ -66,8 +70,7 @@ class Category(MPTTModel):
         return "/kategori/{}".format(self.url)
 
     def save(self, *args, **kwargs):
-        self.url = slugify(self.title, allow_unicode=False)
-        self.title = str(self.title).lower()
+        self.url = slugify(self.title.lower(), allow_unicode=False)
         super(Category, self).save(*args, **kwargs)
 
 class Post(models.Model):
@@ -79,9 +82,6 @@ class Post(models.Model):
                                 verbose_name="Zaman",help_text="İçerik zamanı")
     #İçerik
     content = RichTextUploadingField(verbose_name="İçerik",help_text="İçeriğiniz")
-    #İçerik Anahtarı
-    tags = models.CharField(max_length=500, null=True,
-                                verbose_name="Anahtar Kelime",help_text="makale anahtarlarınız.")
     #açıklama
     description = models.TextField(null=True,verbose_name="Açıklama",help_text="description")
     #öne çıkan görsel
@@ -166,7 +166,7 @@ class SiteInfo(models.Model):
         return '{}'.format(self.title)
 
 class Love(models.Model):
-    #fa fa icon
+    #glyhicon icon
     icon = models.CharField(max_length=50, null=True,
                              verbose_name="Icon",help_text="Glyphicon Icon")
     #Açıklama
@@ -191,3 +191,16 @@ class Skills(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+class Tags(models.Model):
+    tags = models.CharField(max_length=500,
+                             null=True,verbose_name="Etiket",
+                             help_text="(,) ile ayırın.")
+    blog = models.ForeignKey(Post)
+
+    class Meta:
+        verbose_name_plural = "Etiketler"
+        ordering = ('tags',)
+
+    def __str__(self):
+        return '{}'.format(self.tags)

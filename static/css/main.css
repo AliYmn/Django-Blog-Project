@@ -87,3 +87,7 @@ body{background-color:#fff;font-family:'Montserrat',sans-serif;font-weight:400;f
     text-decoration: none;
     border: none;
 }
+
+.category{
+    margin-top: 15px;
+}
