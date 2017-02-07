@@ -1,9 +1,5 @@
-from django.shortcuts import render
 from django.views.generic import ListView,TemplateView,DetailView
-
-from .models import Post,Category
-# Create your views here.
-
+from .models import Post,Category,Love,Skills
 
 class HomeListView(ListView):
 
@@ -38,6 +34,8 @@ class AboutTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AboutTemplateView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
+        context['love'] = Love.objects.all()
+        context['skills'] = Skills.objects.all()
         return context
 
 class BlogListView(ListView):
@@ -60,8 +58,6 @@ class ContactView(TemplateView):
         context = super(ContactView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         return context
-
-
 
 class CategoryView(ListView):
         model = Post

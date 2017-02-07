@@ -23,7 +23,6 @@ from django.views.static import serve
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
 from blog.models import Post,Category
-from django.views.decorators.cache import cache_page
 
 post_dict = {
     'queryset': Post.objects.all(),
@@ -38,7 +37,7 @@ category_dict = {
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeListView.as_view(),name="home-list"),
-    url(r'^hakkimda/', cache_page(300 * 15)(AboutTemplateView.as_view()), name="about"),
+    url(r'^hakkimda/', AboutTemplateView.as_view(), name="about"),
     url(r'^iletisim/', ContactView.as_view(), name="about"),
     url(r'^blog/', BlogListView.as_view(), name="about"),
     url(r'^kategori/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='list-detail'),

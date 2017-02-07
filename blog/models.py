@@ -5,6 +5,9 @@ from mptt.models import MPTTModel, TreeForeignKey
 from ckeditor_uploader.fields import RichTextUploadingField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from ckeditor.fields import RichTextField
+
+
 class Category(MPTTModel):
     # Kategori adı
     title = models.CharField(max_length=500,
@@ -72,7 +75,7 @@ class Post(models.Model):
     image = ProcessedImageField(upload_to='uploads/blog/',
                                            processors=[ResizeToFill(800, 400)],
                                            format='JPEG',
-                                           options={'quality': 50},verbose_name="Öne Çıkan Görsel",
+                                           options={'quality': 60},verbose_name="Öne Çıkan Görsel",
                                             help_text="Öne çıkan görseli oluşturur.")
     #kategoriler
     category_list = models.ForeignKey(Category, null=True, blank=True,
@@ -99,34 +102,72 @@ class Post(models.Model):
 
 class SiteInfo(models.Model):
     #Site adı
-    title = models.CharField(max_length=100, null=True, unique=True,
+    title = models.CharField(max_length=100, null=True,
                              verbose_name="Başlık",help_text="Site başlığı")
     #Site Sloganı
-    slogan = models.CharField(max_length=100, null=True, unique=True,
+    slogan = models.CharField(max_length=100, null=True,
                              verbose_name="Slogan", help_text="Site slogan")
 
     #Site Yazarı
-    author = models.CharField(max_length=100, null=True, unique=True,
+    author = models.CharField(max_length=100, null=True,
                              verbose_name="Yazar",help_text="Yazar adı")
 
     #Site Keywords
-    tags = models.CharField(max_length=200, null=True, unique=True,
+    tags = models.CharField(max_length=200, null=True,
                              verbose_name="Anahatar Kelime",help_text="(,) virgül ile ayırarak yazınız.")
 
     #Site açıklama
     description = models.TextField(null=True, unique=True,
                              verbose_name="Açıklama",help_text="Site açıklama")
 
+    #Kısa biyoğrafi
+    bio_short = RichTextField(null=True, unique=True,
+                             verbose_name="Kısa Bio",help_text="Kısa biyografi yazın.")
+    #Uzun biyoğgrafi
+    bio_long = RichTextField(null=True, unique=True,
+                             verbose_name="Uzun Bio",help_text="Uzun biyografi yazın.")
+    #Ana Sayfa
+    bio_index = RichTextField(null=True, unique=True,
+                             verbose_name="İndex Bio",help_text="Ana Sayfa için kısa biyografi yazın.")
+
     #site default resim
     image = ProcessedImageField(upload_to='uploads/blog/',
                                            format='JPEG',
                                            processors=[ResizeToFill(870, 382)],
-                                           options={'quality': 40},verbose_name="Default Resim",
+                                           options={'quality': 60},verbose_name="Default Resim",
                                             help_text="Büyük resim yükleyin.")
+
 
     class Meta:
         verbose_name_plural = "Site Bilgileri"
         ordering = ('title',)
+
+    def __str__(self):
+        return '{}'.format(self.title)
+
+class Love(models.Model):
+    #fa fa icon
+    icon = models.CharField(max_length=50, null=True,
+                             verbose_name="Icon",help_text="Glyphicon Icon")
+    #Açıklama
+    description = RichTextField(null=True,verbose_name="Açıklama",help_text="Kısa Açıklama Yapınız.")
+
+    class Meta:
+        verbose_name_plural = "Sevdiklerim"
+        ordering = ('description',)
+
+    def __str__(self):
+        return '{}'.format(self.icon)
+
+class Skills(models.Model):
+    #title
+    title = models.CharField(max_length=100, null=True,verbose_name="Yetenek",help_text="Yetenek Adı")
+    #Oran
+    rate = models.CharField(max_length=25, null=True,verbose_name="Oran",help_text="Yetenek Oranı : 1-100")
+
+    class Meta:
+        verbose_name_plural = "Yeteneklerim"
+        ordering = ('rate',)
 
     def __str__(self):
         return '{}'.format(self.title)

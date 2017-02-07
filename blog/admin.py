@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category,Post,SiteInfo
+from .models import Category,Post,SiteInfo,Love,Skills
 
 
 class PostModel(admin.ModelAdmin):
@@ -22,8 +22,17 @@ class SiteModel(admin.ModelAdmin):
     list_display = ('title','slogan','author','image')
     search_fields = ('title', 'slogan','description',)
 
+class LoveModel(admin.ModelAdmin):
+    list_display = ('icon','description')
+    search_fields = ('icon','description',)
+
+class SkillsModel(admin.ModelAdmin):
+    list_display = ('title','rate')
+    search_fields = ('title','rate',)
 
 admin.site.register(Category,CategoryModel)
 admin.site.register(Post,PostModel)
 admin.site.register(SiteInfo,SiteModel)
+admin.site.register(Love,LoveModel)
+admin.site.register(Skills,SkillsModel)
 

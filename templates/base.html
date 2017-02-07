@@ -72,11 +72,7 @@ içerik kısmı
         <div class="row">
             <div class="col-lg-4">
                 <h4>Hakkımda</h4>
-                <p>
-                    Yazılım ile ilgilenmeyi sever,<br/>
-                    aynı zamanda elektronik ilgisi büyüktür, <br/>
-                    ama daha çok web geliştirmeyi tercih eder.
-                </p>
+                    {% autoescape off %}{% site_bio_index %}{% endautoescape %}
             </div><!-- /col-lg-4 -->
 
             <div class="col-lg-4">
@@ -90,11 +86,10 @@ içerik kısmı
                 <h4>Sosyal Medya Hesaplarım</h4>
                 <div class="col-md-12">
                     <ul class="social-network social-circle">
-                        <li><a href="/sitemap_post.xml" class="icoRss" title="Sitemap"><i class="fa fa-sitemap"></i></a></li>
+                        <li><a href="/sitemap_post.xml/" class="icoRss" title="Sitemap"><i class="fa fa-sitemap"></i></a></li>
                         <li><a href="https://www.facebook.com/aliymn44" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://twitter.com/aliymn44" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="https://github.com/AliYmn/DjangoBlog" class="icoGoogle" title="Google +"><i class="fa fa-github"></i></a></li>
-                        <li><a href="https://www.instagram.com/aliymn44/" class="icoLinkedin" title="Linkedin"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                 </div>
             </div><!-- /col-lg-4 -->
