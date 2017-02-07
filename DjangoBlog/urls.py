@@ -22,7 +22,7 @@ from django.conf import settings
 from django.views.static import serve
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
-from blog.models import Post,Category
+from blog.models import Post,Category,Tags
 
 post_dict = {
     'queryset': Post.objects.all(),
@@ -33,6 +33,9 @@ category_dict = {
     'queryset':Category.objects.all(),
 }
 
+tags_dict = {
+    'queryset':Tags.objects.all(),
+}
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -49,6 +52,9 @@ urlpatterns = [
 
     url(r'^sitemap_category\.xml$', sitemap,{'sitemaps': {'blog': GenericSitemap(category_dict, priority=0.6)}},
                                                  name='django.contrib.sitemaps.views.sitemap'),
+
+    url(r'^sitemap_tags\.xml$', sitemap, {'sitemaps': {'blog': GenericSitemap(tags_dict, priority=0.6)}},
+        name='django.contrib.sitemaps.views.sitemap'),
 
     url(r'^robots.txt/', RobotsView.as_view(), name="robots"),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

@@ -10,6 +10,9 @@ image = ""
 bio_short = ""
 bio_long = ""
 bio_index = ""
+facebook = ""
+github = ""
+twitter = ""
 
 for i in SiteInfo.objects.all():
     title = i.title
@@ -21,6 +24,9 @@ for i in SiteInfo.objects.all():
     bio_short = i.bio_short
     bio_long = i.bio_long
     bio_index = i.bio_index
+    facebook = i.facebook
+    github = i.github
+    twitter = i.twitter
 
 # Template Kütüphanesi
 register = template.Library()
@@ -60,3 +66,15 @@ def site_bio_long():
 @register.simple_tag
 def site_bio_index():
     return bio_index
+
+@register.simple_tag
+def site_facebook():
+    return facebook
+
+@register.simple_tag
+def site_github():
+    return github
+
+@register.simple_tag
+def site_twitter():
+    return twitter

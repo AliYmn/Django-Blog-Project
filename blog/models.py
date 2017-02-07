@@ -157,7 +157,12 @@ class SiteInfo(models.Model):
                                            options={'quality': 60},verbose_name="Default Resim",
                                             help_text="Büyük resim yükleyin.")
 
-
+    facebook = models.CharField(max_length=100, null=True,
+                             verbose_name="Facebook",help_text="Facebook")
+    twitter = models.CharField(max_length=100, null=True,
+                             verbose_name="twitter",help_text="twitter")
+    github = models.CharField(max_length=100, null=True,
+                             verbose_name="github",help_text="github")
     class Meta:
         verbose_name_plural = "Site Bilgileri"
         ordering = ('title',)
@@ -196,11 +201,15 @@ class Tags(models.Model):
     tags = models.CharField(max_length=500,
                              null=True,verbose_name="Etiket",
                              help_text="(,) ile ayırın.")
+
     blog = models.ForeignKey(Post)
 
     class Meta:
         verbose_name_plural = "Etiketler"
         ordering = ('tags',)
+
+    def get_absolute_url(self):
+        return "/etiket/{}".format(self.tags)
 
     def __str__(self):
         return '{}'.format(self.tags)
