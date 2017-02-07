@@ -4,7 +4,7 @@ from .models import Category,Post,SiteInfo,Love,Skills
 
 class PostModel(admin.ModelAdmin):
     exclude = ('url',)
-    list_display = ('title','url','time','category_list','is_active','image')
+    list_display = ('title','url','time','category_list','is_active','image','hit')
     search_fields = ('title', 'content','is_active',)
     list_editable = ('category_list', 'is_active','image')
     list_filter = (

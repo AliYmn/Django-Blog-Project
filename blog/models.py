@@ -6,6 +6,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from ckeditor.fields import RichTextField
+from django.conf import settings
 
 
 class Category(MPTTModel):
@@ -85,7 +86,8 @@ class Post(models.Model):
     #yayınlama durumu
     is_active = models.BooleanField(default=False,verbose_name="Yayınla",
                                     help_text="Aktif olursa makale yayınlanır.")
-
+    #
+    hit = models.IntegerField(default=0,verbose_name="Site Hit",help_text="Site görüntülenme sayısıdır.")
     class Meta:
         verbose_name_plural = "Makale Yaz"
         ordering = ('title',)
@@ -95,6 +97,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return "/{}".format(self.url)
+
 
     def save(self, *args, **kwargs):
         self.url = slugify(self.title,allow_unicode=False)

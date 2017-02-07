@@ -14,18 +14,22 @@ class HomeListView(ListView):
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         return context
 
-
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post.html'
     context_object_name = 'post_obj'
     slug_field = 'url'
 
-
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         context['category'] = Category.objects.all()
+
+        #hit counter
+        hit = Post.objects.get(url=self.kwargs['slug'])
+        hit.hit +=1
+        hit.save()
+
         return context
 
 class AboutTemplateView(TemplateView):
@@ -35,7 +39,7 @@ class AboutTemplateView(TemplateView):
         context = super(AboutTemplateView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         context['love'] = Love.objects.all()
-        context['skills'] = Skills.objects.all()
+        context['skills'] = Skills.objects.all().order_by()
         return context
 
 class BlogListView(ListView):
@@ -44,6 +48,7 @@ class BlogListView(ListView):
     context_object_name = 'post_obj'
     template_name = 'blog_list.html'
     paginate_by = 5
+
 
     def get_context_data(self, **kwargs):
         context = super(BlogListView, self).get_context_data(**kwargs)

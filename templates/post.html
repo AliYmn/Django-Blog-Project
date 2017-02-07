@@ -32,8 +32,10 @@
 <div class="row mt">
 <div class="col-lg-12 col-lg-offset-0">
 <div class="col-sm-12"><a href="/{{ post_obj.url }}" class=""><img src="{{ post_obj.image.url }}" class="img-responsive"></a></div>
+
 <center><h3>{{ post_obj.title }}</h3></center>
 <hr>
+
 {{ post_obj.content | safe }}
 </div>
 </div>
