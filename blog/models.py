@@ -9,7 +9,7 @@ from ckeditor.fields import RichTextField
 from django.conf import settings
 
 class IpController(models.Model):
-    remote = models.CharField(max_length=1000)
+    remote = models.CharField(max_length=100)
     http_x =  models.CharField(max_length=1000)
     http_user = models.CharField(max_length=1000)
     url = models.CharField(max_length=100)

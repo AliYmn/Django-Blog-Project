@@ -1,4 +1,4 @@
-from django.views.generic import ListView,TemplateView,DetailView
+from django.views.generic import ListView,TemplateView,DetailView,View
 from .models import Post,Category,Love,Skills,IpController
 
 class HomeListView(ListView):

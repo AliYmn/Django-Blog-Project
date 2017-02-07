@@ -34,7 +34,7 @@
     {% for i in post_obj %}
     <h1>{{ i.title }}</h1>
     <span class="badge">{{ i.time }}</span><div class="pull-right"><span class="label label-danger">{{ i.site_hit }} kez okundu</span></div>
-    {{ i.content|safe }}
+    {{ i.content|safe|truncatewords:15 }}
     <div>
     <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Etiketler :  <a href="/{{ i.url }}">{{ i.tags }}</a></p>
      </div>

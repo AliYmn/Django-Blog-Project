@@ -148,6 +148,7 @@ MEDIA_URL = '/media/'
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono-lisa',
+
         'toolbar_YourCustomToolbarConfig': [
             {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
@@ -181,10 +182,7 @@ CKEDITOR_CONFIGS = {
             'extraPlugins': ','.join(
             [
                 # add the follow plugins
-                'autosave',
                 'codesnippet',
-                'widget',
-                'dialog',
             ]),
     }
 }
@@ -200,7 +198,7 @@ CKEDITOR_ALLOW_NONIMAGE_FILES = False
 AWS_QUERYSTRING_AUTH = False
 
 #Resim kalitesi
-IMAGE_QUALITY = 45
+IMAGE_QUALITY = 60
 # Küçük resim boyutu
 THUMBNAIL_SIZE=(300,300)
 

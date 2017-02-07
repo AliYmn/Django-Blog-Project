@@ -29,7 +29,7 @@
 {% block content %}
 <script>hljs.initHighlightingOnLoad();</script>
     <div class="jumbotron">
-      <center><h1>{{ post_obj.title }}</h1></center>
+      <center><h1><mark>{{ post_obj.title }}</mark></h1></center>
 <center> <span class="label label-danger">Yazar : {% site_author %}</span> <span class="label label-success">{{ post_obj.site_hit }} kez okundu</span> <span class="label label-primary">Tarih : {{ post_obj.time }}</span></center>
 </div>
 <div class="container pt ">
@@ -40,15 +40,38 @@
 <hr>
 
 {{ post_obj.content | safe }}
-                <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Etiketler :  <a href="/{{ post_obj.url }}">{{ post_obj.tags }}</a></p>
+<p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Etiketler :  <a href="/{{ post_obj.url }}">{{ post_obj.tags }}</a></p>
 
 </div>
-
 </div>
+
 
 <div class="row mt centered">
 <p><bt>Yazar : <span class="renk">{% site_author %}</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
 {% disqus_show_comments %}
+    <hr>
+<center><h3><mark>Popüler Yazılar</mark></h3></center>
+{% for i in post %}
+        <div class="col-sm-4 col-md-4">
+            <div class="post">
+                <div class="post-img-content">
+                    <img src="{{ i.image.url }}" class="img-responsive" />
+                    <span class="post-title"><b>{{ i.title }}</b><br />
+                </div>
+                <div class="content">
+                    {{ i.content|safe|truncatewords:9 }}
+                    <div>
+                    <div class="pagination-wrapper">
+                        <ul class="pager">
+                    <li class="pagination-wrapper"><a href="/{{ i.url }}">Devamını Oku</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endfor %}
 
 </div><!-- /row -->
 </div><!-- /container -->
