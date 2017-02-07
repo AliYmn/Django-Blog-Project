@@ -3,8 +3,8 @@ from .models import Category,Post,SiteInfo,Love,Skills
 
 
 class PostModel(admin.ModelAdmin):
-    exclude = ('url',)
-    list_display = ('title','url','time','category_list','is_active','image','hit')
+    exclude = ('url','ip',)
+    list_display = ('title','url','time','category_list','is_active','image','site_hit')
     search_fields = ('title', 'content','is_active',)
     list_editable = ('category_list', 'is_active','image')
     list_filter = (
@@ -35,4 +35,3 @@ admin.site.register(Post,PostModel)
 admin.site.register(SiteInfo,SiteModel)
 admin.site.register(Love,LoveModel)
 admin.site.register(Skills,SkillsModel)
-

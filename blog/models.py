@@ -8,6 +8,19 @@ from imagekit.processors import ResizeToFill
 from ckeditor.fields import RichTextField
 from django.conf import settings
 
+class IpController(models.Model):
+    remote = models.CharField(max_length=1000)
+    http_x =  models.CharField(max_length=1000)
+    http_user = models.CharField(max_length=1000)
+    url = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Ip Kontrol"
+        ordering = ('remote',)
+
+    def __str__(self):
+        return '{}'.format(self.remote)
+
 
 class Category(MPTTModel):
     # Kategori adı
@@ -35,7 +48,6 @@ class Category(MPTTModel):
 
     # Kategori slug url oluşturma.
     url = models.CharField(max_length=500,null=True, blank=True)
-
     #Öne çıkan görsel
     image =  ProcessedImageField(upload_to='uploads/category/',options={'quality': 30},blank=True)
 
@@ -86,8 +98,11 @@ class Post(models.Model):
     #yayınlama durumu
     is_active = models.BooleanField(default=False,verbose_name="Yayınla",
                                     help_text="Aktif olursa makale yayınlanır.")
-    #
-    hit = models.IntegerField(default=0,verbose_name="Site Hit",help_text="Site görüntülenme sayısıdır.")
+    #hit
+    site_hit = models.IntegerField(default=0,verbose_name="Site Hit",help_text="Site görüntülenme sayısıdır.")
+    #Ip Kontrol
+    ip = models.ForeignKey(IpController, null=True, blank=True,
+                                   db_index=True,verbose_name="Ip Kontrol")
     class Meta:
         verbose_name_plural = "Makale Yaz"
         ordering = ('title',)
@@ -97,6 +112,8 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return "/{}".format(self.url)
+
+
 
 
     def save(self, *args, **kwargs):

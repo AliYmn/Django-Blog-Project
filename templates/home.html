@@ -24,12 +24,7 @@
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<img src="{%  static 'img/user.png' %}" alt="Stanley">
 					<h3>Merhaba! </h3>
-                    <p>Herzaman bilginin gücüne inanlardan oldum , araştirmalarım ve deneyimlerimlerimi sizlere sunmayı amaçlıyorum.
-                    İstanbul Üniversitesi Kontrol ve Otomasyon Öğrencisiyim Elektronik ve Programlama ile ilgim var.
-                    İlgi alanımlarla ilgili deneyimleri size sunmayı amaçlıyorum.
-                    </p>
-
-
+                    {% autoescape off %}{% site_bio_short %}{% endautoescape %}
 				</div><!-- /col-lg-8 -->
 			</div><!-- /row -->
 	    </div> <!-- /container -->

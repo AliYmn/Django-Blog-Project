@@ -7,6 +7,9 @@ author = ""
 tags = ""
 description = ""
 image = ""
+bio_short = ""
+bio_long = ""
+bio_index = ""
 
 for i in SiteInfo.objects.all():
     title = i.title

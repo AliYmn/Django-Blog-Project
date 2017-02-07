@@ -1,5 +1,5 @@
 from django.views.generic import ListView,TemplateView,DetailView
-from .models import Post,Category,Love,Skills
+from .models import Post,Category,Love,Skills,IpController
 
 class HomeListView(ListView):
 
@@ -22,13 +22,18 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
+        context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')[:5]
         context['category'] = Category.objects.all()
+        context['post'] = Post.objects.all().filter(is_active=True).order_by('-site_hit')[:5]
+        ip = IpController.objects.all().filter(remote=str(self.request.META.get('REMOTE_ADDR')),http_x=str(self.request.META.get('HTTP_X_FORWARDED_FOR')),
+                                    http_user=str(self.request.META['HTTP_USER_AGENT']),url=str(self.kwargs['slug']))
+        if(not ip):
+            IpController.objects.create(remote=str(self.request.META.get('REMOTE_ADDR')),http_x=str(self.request.META.get('HTTP_X_FORWARDED_FOR')),
+                                    http_user=str(self.request.META['HTTP_USER_AGENT']),url=str(self.kwargs['slug'])).save()
 
-        #hit counter
-        hit = Post.objects.get(url=self.kwargs['slug'])
-        hit.hit +=1
-        hit.save()
+            hit = Post.objects.get(url=self.kwargs['slug'])
+            hit.site_hit += 1
+            hit.save()
 
         return context
 
@@ -54,6 +59,7 @@ class BlogListView(ListView):
         context = super(BlogListView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         context['category'] = Category.objects.all()
+        context['post'] = Post.objects.all().filter(is_active=True).order_by('-site_hit')[:5]
         return context
 
 class ContactView(TemplateView):
