@@ -155,7 +155,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_RESTRICT_BY_USER = False
 CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
@@ -165,6 +165,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/post/"
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 AWS_QUERYSTRING_AUTH = False
 
+# ----------------Ayarlar------------------------ #
 #Resim kalitesi
 IMAGE_QUALITY = 60
 # Küçük resim boyutu
@@ -174,5 +175,7 @@ THUMBNAIL_SIZE=(300,300)
 DISQUS_API_KEY = 'ApiKey'
 #Subdomain
 DISQUS_WEBSITE_SHORTNAME = 'aliyaman'
+
 #Sıte ID, admin panelden sites bölümden bilgileri değişin.
 SITE_ID = 1
+# ----------------Ayarlar------------------------ #
