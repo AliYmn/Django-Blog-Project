@@ -72,6 +72,19 @@ Hakkımda adlı sayfada yeteneklerinizi yazabilceğiniz alandır.
 <a href="http://aliyaman.org"><img src="http://image.prntscr.com/image/3a66844fbf4a4a6e86aa8e772b198c12.png" alt="Kişisel Blog"></a>
 <a href="http://aliyaman.org"><img src="http://image.prntscr.com/image/26145f7f02cc42fc853ac5866c5454c8.png" alt="Kişisel Blog"></a>
 
+# SiteMaps
+
+* Kategori    : /sitemap_post.xml
+* Yazılar     : /sitemap_category
+* Etiket      : /sitemap_tags
+ 
+olmak üzere üç adet sitemaps bulunur.
+
+# Robots.txt
+
+Robots.txt ulaşmak için;
+* /robots.txt yazabilirsiniz.
+
 # Kurulum
 
 Tavsiye kurulum : https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
