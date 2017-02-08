@@ -1,6 +1,6 @@
 from django.views.generic import ListView,TemplateView,DetailView
 from .models import Post,Category,Love,Skills,IpController,Tags
-from django.shortcuts import get_list_or_404,get_object_or_404
+from django.shortcuts import get_list_or_404
 
 class HomeListView(ListView):
 
