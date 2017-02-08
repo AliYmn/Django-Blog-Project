@@ -27,7 +27,6 @@
 {% endblock %}
 
 {% block content %}
-<script>hljs.initHighlightingOnLoad();</script>
     <div class="jumbotron">
       <center><h1><mark>{{ post_obj.title }}</mark></h1></center>
 <center> <span class="label label-danger">Yazar : {% site_author %}</span> <span class="label label-success">{{ post_obj.site_hit }} kez okundu</span> <span class="label label-primary">Tarih : {{ post_obj.time }}</span></center>
@@ -86,9 +85,4 @@
 {% for last_post in last_content %}
 <a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
 {% endfor %}
-{% endblock %}
-
-{% block footer %}
-<link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css' %}" />
-<script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
 {% endblock %}
