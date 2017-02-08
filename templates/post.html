@@ -51,7 +51,7 @@
 
 
 <div class="row mt centered">
-<p><bt>Yazar : <span class="renk">{% site_author %}</span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
+<p><bt>Yazar : <span class="renk"><a href="/hakkimda/">{% site_author %}</a></span></bt> - <bt>Kategori: <a href="/kategori/{{ post_obj.category_list.url }}">{{ post_obj.category_list }}</a></bt> - <bt>Tarih: <span class="renk">{{ post_obj.time.date }}</span></bt></p>
 {% disqus_show_comments %}
     <hr>
 <center><h3><mark>Popüler Yazılar</mark></h3></center>
@@ -59,11 +59,11 @@
         <div class="col-sm-4 col-md-4">
             <div class="post">
                 <div class="post-img-content">
-                    <img src="{{ i.image.url }}" class="img-responsive" />
+                    <a href="/{{ i.url }}"><img src="{{ i.image.url }}" class="img-responsive" /></a>
                     <span class="post-title"><b>{{ i.title }}</b><br />
                 </div>
                 <div class="content">
-                    {{ i.content|safe|truncatewords:9 }}
+                    {{ i.content|safe|truncatewords:5 }}
                     <div>
                     <div class="pagination-wrapper">
                         <ul class="pager">

@@ -1,5 +1,6 @@
 from django.views.generic import ListView,TemplateView,DetailView
 from .models import Post,Category,Love,Skills,IpController,Tags
+from django.shortcuts import get_list_or_404,get_object_or_404
 
 class HomeListView(ListView):
 
@@ -76,7 +77,7 @@ class CategoryView(ListView):
         context_object_name = 'post_obj'
         paginate_by = 3
         def get_queryset(self, *args, **kwargs):
-            return Post.objects.filter(category_list__url=self.kwargs['slug'],is_active=True)
+            return get_list_or_404(Post.objects.filter(category_list__url=self.kwargs['slug'],is_active=True))
 
         def get_context_data(self, **kwargs):
             context = super(CategoryView, self).get_context_data(**kwargs)
@@ -97,7 +98,7 @@ class TagsView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return Tags.objects.all().filter(blog__is_active=True,tags=self.kwargs['slug'])
+        return get_list_or_404(Tags.objects.all().filter(blog__is_active=True,tags=self.kwargs['slug']))
 
     def get_context_data(self, **kwargs):
         context = super(TagsView, self).get_context_data(**kwargs)

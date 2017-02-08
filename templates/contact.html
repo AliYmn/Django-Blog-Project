@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load blog_tags %}
 {% load blog_tags %}
 <!-- SEO -->
 
@@ -26,7 +26,7 @@
 				<h3>Merhaba!</h3>
 				<hr>
                 <p>Aşşağıdaki email adresinden bizimle iletişime geçebilirsiniz.</p>
-                Email : <a href="mailto:info@python.tc">aliymn.db@gmail.com</a><br>
+                Email : <a href="mailto:{% site_email %}">{% site_email %}</a><br>
                 <hr>
                 <br>
                 Genelde günlük e-postlarımı kontrol ediyorum, kısa zamanda <br>dönüş yapacağımdan emin olabilirsiniz.

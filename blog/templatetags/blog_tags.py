@@ -13,6 +13,7 @@ bio_index = ""
 facebook = ""
 github = ""
 twitter = ""
+email = ""
 
 for i in SiteInfo.objects.all():
     title = i.title
@@ -27,6 +28,7 @@ for i in SiteInfo.objects.all():
     facebook = i.facebook
     github = i.github
     twitter = i.twitter
+    email = i.email
 
 # Template Kütüphanesi
 register = template.Library()
@@ -78,3 +80,7 @@ def site_github():
 @register.simple_tag
 def site_twitter():
     return twitter
+
+@register.simple_tag
+def site_email():
+    return email

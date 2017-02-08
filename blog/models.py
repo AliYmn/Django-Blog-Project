@@ -6,11 +6,6 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from ckeditor.fields import RichTextField
-from django.conf import settings
-
-
-
-
 
 class IpController(models.Model):
     remote = models.CharField(max_length=100)
@@ -70,7 +65,7 @@ class Category(MPTTModel):
         return "/kategori/{}".format(self.url)
 
     def save(self, *args, **kwargs):
-        self.url = slugify(self.title.lower(), allow_unicode=False)
+        self.url = slugify(self.title.lower(), allow_unicode=True)
         super(Category, self).save(*args, **kwargs)
 
 class Post(models.Model):
@@ -117,7 +112,7 @@ class Post(models.Model):
 
 
     def save(self, *args, **kwargs):
-        self.url = slugify(self.title,allow_unicode=False)
+        self.url = slugify(self.title,allow_unicode=True)
         super(Post, self).save(*args, **kwargs)
 
 class SiteInfo(models.Model):
@@ -163,6 +158,9 @@ class SiteInfo(models.Model):
                              verbose_name="twitter",help_text="twitter")
     github = models.CharField(max_length=100, null=True,
                              verbose_name="github",help_text="github")
+    email = models.CharField(max_length=100, null=True,
+                             verbose_name="e-mail",help_text="e-mail")
+
     class Meta:
         verbose_name_plural = "Site Bilgileri"
         ordering = ('title',)
@@ -208,8 +206,14 @@ class Tags(models.Model):
         verbose_name_plural = "Etiketler"
         ordering = ('tags',)
 
+
+
     def get_absolute_url(self):
         return "/etiket/{}".format(self.tags)
+
+    def save(self, *args, **kwargs):
+        self.tags = slugify(self.tags.lower(), allow_unicode=True)
+        super(Tags, self).save(*args, **kwargs)
 
     def __str__(self):
         return '{}'.format(self.tags)
