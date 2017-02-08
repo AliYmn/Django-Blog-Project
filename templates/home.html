@@ -16,7 +16,6 @@
 
 {% block content %}
 
-
 	<!-- +++++ Welcome Section +++++ -->
 	<div id="ww">
 	    <div class="container">
@@ -34,7 +33,7 @@
 <!-- +++++ Projects Section +++++ -->
 	<div class="container pt">
 		<div class="row mt centered">
-        <center><h3>Rastgele Yazılar</h3></center>
+        <center><h3><mark>Rastgele Yazılar</mark></h3></center>
             {% for post in post_obj %}
 			<div class="col-lg-4">
 				<a class="zoom green" href="/{{ post.url }}"><img  width="500px" height="200px"  src="{{ post.image.url }}" alt="{{ post.title }}" /></a>
