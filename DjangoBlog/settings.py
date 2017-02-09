@@ -148,10 +148,6 @@ MEDIA_URL = '/media/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
-        'extraPlugins': ','.join(
-            [
-                'codesnippet',
-            ]),
     },
 }
 
