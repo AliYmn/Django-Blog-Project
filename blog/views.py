@@ -60,6 +60,7 @@ class BlogListView(ListView):
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         context['category'] = Category.objects.all()
         context['post'] = Post.objects.all().filter(is_active=True).order_by('-site_hit')[:5]
+        context['random_post'] = Post.objects.all().filter(is_active=True).order_by('?')
         return context
 
 class ContactView(TemplateView):

@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load disqus_tags %}
 {% load blog_tags %}
 <!-- SEO -->
 
@@ -60,7 +59,7 @@
 							</li>
 							<li role="presentation">
 								<a href="#messages" aria-controls="messages" role="tab"
-								   data-toggle="tab">Yorumlar</a>
+								   data-toggle="tab">Rastgele</a>
 							</li>
 						</ul>
 
@@ -113,14 +112,29 @@
 							</div>
 							<div role="tabpanel" class="tab-pane" id="messages">
 								<div class="tab-post-list">
+                                {% for i in random_post %}
+									<div class="tab-post-list-wrap clearfix">
 
-										<div class="tab-post-list-wrap">
-                                            {% disqus_recent_comments  5 30 1 %}
-										</di>
+										<div class="tab-post-thumb pull-left">
+											<figure>
+												<a href="/{{ i.url }}">
+													<img src="{{ i.image.url }}"
+														 alt="{{ i.title }}">
+												</a>
+											</figure>
+										</div>
+
+										<div class="tab-post-title">
+											<h6><a href="/{{ i.url }}">{{ i.title }}</a>
+											</h6>
+											<span>{{ i.time.date }}</span>
+										</div>
+
+									</div>
+                                {% endfor %}
 
 								</div>
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
