@@ -85,6 +85,6 @@ def site_twitter():
 def site_email():
     return email
 
-@register.filter(name='tags')
-def tags(value):
+@register.filter(name='post_tags')
+def post_tags(value):
     return str("{},".format(value)).replace("-", " ")
