@@ -21,10 +21,15 @@ class PostDetailView(DetailView):
     slug_field = 'url'
 
     def get_context_data(self, **kwargs):
+        tags = []
+        post_tags = []
+        posts_tags = []
+
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')[:5]
         context['category'] = Category.objects.all()
         context['post'] = Post.objects.all().filter(is_active=True).order_by('-site_hit')[:5]
+
         ip = IpController.objects.all().filter(remote=str(self.request.META.get('REMOTE_ADDR')),http_x=str(self.request.META.get('HTTP_X_FORWARDED_FOR')),
                                     http_user=str(self.request.META['HTTP_USER_AGENT']),url=str(self.kwargs['slug']))
         if(not ip):
