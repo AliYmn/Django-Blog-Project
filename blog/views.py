@@ -1,6 +1,8 @@
 from django.views.generic import ListView,TemplateView,DetailView
 from .models import Post,Category,Love,Skills,IpController,Tags
 from django.shortcuts import get_list_or_404
+from django.http import HttpResponse
+
 class HomeListView(ListView):
     """Ana Sayfa"""
     model = Post
@@ -14,6 +16,7 @@ class HomeListView(ListView):
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         return context
 
+
 class PostDetailView(DetailView):
     """Post detay sayfası"""
     model = Post
@@ -22,10 +25,6 @@ class PostDetailView(DetailView):
     slug_field = 'url'
 
     def get_context_data(self, **kwargs):
-        tags = []
-        post_tags = []
-        posts_tags = []
-
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')[:5]
         context['category'] = Category.objects.all()
@@ -35,7 +34,7 @@ class PostDetailView(DetailView):
                                                http_x=str(self.request.META.get('HTTP_X_FORWARDED_FOR')),
                                                http_user=str(self.request.META['HTTP_USER_AGENT']),
                                                url=str(self.kwargs['slug']))
-        if(not ip):
+        if(ip):
             IpController.objects.create(remote=str(self.request.META.get('REMOTE_ADDR')),
                                         http_x=str(self.request.META.get('HTTP_X_FORWARDED_FOR')),
                                         http_user=str(self.request.META['HTTP_USER_AGENT']),
