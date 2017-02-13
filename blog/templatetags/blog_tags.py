@@ -88,3 +88,7 @@ def site_email():
 @register.filter(name='post_tags')
 def post_tags(value):
     return str("{},".format(value)).replace("-", " ")
+
+@register.filter(name='tags_list')
+def tags_list(value):
+    return str("{}".format(value)).replace("-", " ")

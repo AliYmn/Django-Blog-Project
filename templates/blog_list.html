@@ -35,7 +35,7 @@
     <span class="badge">{{ i.time }}</span><div class="pull-right"><span class="label label-success">{{ i.site_hit }} kez okundu</span></div>
     {{ i.content|safe|truncatewords:15 }}
     <div>
-    <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Kategori :  <a href="/kategori/{{ i.category_list }}">{{ i.category_list }}</a></p>
+    <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Kategori :  <a href="/kategori/{{ i.category_list.url }}">{{ i.category_list }}</a></p>
      </div>
     <hr>
     {% endfor %}

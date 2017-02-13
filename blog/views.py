@@ -1,7 +1,6 @@
 from django.views.generic import ListView,TemplateView,DetailView
 from .models import Post,Category,Love,Skills,IpController,Tags
 from django.shortcuts import get_list_or_404
-from django.http import HttpResponse
 
 class HomeListView(ListView):
     """Ana Sayfa"""
@@ -119,4 +118,5 @@ class TagsView(ListView):
         context = super(TagsView, self).get_context_data(**kwargs)
         context['last_content'] = Post.objects.all().filter(is_active=True).order_by('-time')
         context['category'] = Category.objects.all()
+        context['tags'] = Tags.objects.all().filter(blog__is_active=True,tags=self.kwargs['slug'])[:1]
         return context
