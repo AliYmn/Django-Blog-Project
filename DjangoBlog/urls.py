@@ -17,7 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from blog.views import (HomeListView,PostDetailView,
                         AboutTemplateView,BlogListView,
-                        ContactView,CategoryView,RobotsView,TagsView)
+                        ContactView,CategoryView,RobotsView,TagsView,LatestEntriesFeed)
 from django.conf import settings
 from django.views.static import serve
 from django.contrib.sitemaps import GenericSitemap
@@ -58,6 +58,7 @@ urlpatterns = [
 
     url(r'^robots.txt/', RobotsView.as_view(), name="robots"),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^latest/feed/$', LatestEntriesFeed()),
 ]
 
 urlpatterns += [

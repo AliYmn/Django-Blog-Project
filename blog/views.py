@@ -120,3 +120,26 @@ class TagsView(ListView):
         context['category'] = Category.objects.all()
         context['tags'] = Tags.objects.all().filter(blog__is_active=True,tags=self.kwargs['slug'])[:1]
         return context
+
+
+from django.contrib.syndication.views import Feed
+from django.urls import reverse
+from .models import Post
+
+class LatestEntriesFeed(Feed):
+    title = "Police beat site news"
+    link = "/sitenews/"
+    description = "Updates on changes and additions to police beat central."
+
+    def items(self):
+        return Post.objects.order_by('-time')[:5]
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.description
+
+    # item_link is only needed if NewsItem has no get_absolute_url method.
+    def item_link(self, item):
+        return reverse('post', args=[item.url])
