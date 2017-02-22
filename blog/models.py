@@ -18,7 +18,7 @@ class IpController(models.Model):
         ordering = ('remote',)
 
     def __str__(self):
-        return '{}'.format(self.remote)
+        return '{}'.format("Ziyaret Edilen Url : {}".format(self.url))
 
 
 class Category(MPTTModel):
