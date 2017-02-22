@@ -1,6 +1,8 @@
 from django.views.generic import ListView,TemplateView,DetailView
 from .models import Post,Category,Love,Skills,IpController,Tags
 from django.shortcuts import get_list_or_404
+from django.contrib.syndication.views import Feed
+from django.urls import reverse
 
 class HomeListView(ListView):
     """Ana Sayfa"""
@@ -34,6 +36,9 @@ class PostDetailView(DetailView):
                                                http_user=str(self.request.META['HTTP_USER_AGENT']),
                                                url=str(self.kwargs['slug']))
         if(ip):
+            """Kullanıcı siteyi görüntülenmiş. Tekrar hit saymıyoruz."""
+            pass
+        else:
             IpController.objects.create(remote=str(self.request.META.get('REMOTE_ADDR')),
                                         http_x=str(self.request.META.get('HTTP_X_FORWARDED_FOR')),
                                         http_user=str(self.request.META['HTTP_USER_AGENT']),
@@ -122,14 +127,12 @@ class TagsView(ListView):
         return context
 
 
-from django.contrib.syndication.views import Feed
-from django.urls import reverse
-from .models import Post
 
 class LatestEntriesFeed(Feed):
-    title = "Police beat site news"
+    """Feed"""
+    title = "Feeds"
     link = "/sitenews/"
-    description = "Updates on changes and additions to police beat central."
+    description = "Kişisel Blog"
 
     def items(self):
         return Post.objects.order_by('-time')[:5]

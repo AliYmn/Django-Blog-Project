@@ -43,8 +43,7 @@ urlpatterns = [
     url(r'^hakkimda/', AboutTemplateView.as_view(), name="about"),
     url(r'^iletisim/', ContactView.as_view(), name="about"),
     url(r'^blog/', BlogListView.as_view(), name="about"),
-    url(r'^kategori/(?P<slug>[-\w]+)/$', CategoryView.as_view(), name='list-detail'),
-    url(r'^(?P<slug>[-\w]+)/$', PostDetailView.as_view(), name='post'),
+    url(r'^kategori/(?P<slug>[-\w]+)/', CategoryView.as_view(), name='list-detail'),
     url(r'^etiket/(?P<slug>[-\w]+)/$', TagsView.as_view(), name='tags'),
 
     url(r'^sitemap_post\.xml$', sitemap,{'sitemaps': {'blog': GenericSitemap(post_dict, priority=0.6)}},
@@ -58,7 +57,10 @@ urlpatterns = [
 
     url(r'^robots.txt/', RobotsView.as_view(), name="robots"),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^latest/feed/$', LatestEntriesFeed()),
+
+    url(r'^feed/$', LatestEntriesFeed()),
+    url(r'^(?P<slug>[-\w]+)/$', PostDetailView.as_view(), name='post'),
+
 ]
 
 urlpatterns += [

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category,Post,SiteInfo,Love,Skills,Tags
+from .models import Category,Post,SiteInfo,Love,Skills,Tags,IpController
 
 class TagsInline(admin.TabularInline):
     model = Tags
@@ -42,3 +42,4 @@ admin.site.register(SiteInfo,SiteModel)
 admin.site.register(Love,LoveModel)
 admin.site.register(Skills,SkillsModel)
 admin.site.register(Tags)
+admin.site.register(IpController)
