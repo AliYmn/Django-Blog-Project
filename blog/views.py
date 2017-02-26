@@ -3,6 +3,7 @@ from .models import Post,Category,Love,Skills,IpController,Tags
 from django.shortcuts import get_list_or_404
 from django.contrib.syndication.views import Feed
 from django.urls import reverse
+from django.contrib.sites.models import Site
 
 class HomeListView(ListView):
     """Ana Sayfa"""
@@ -106,6 +107,11 @@ class CategoryView(ListView):
 class RobotsView(TemplateView):
     """robots.txt"""
     template_name = 'robots.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RobotsView, self).get_context_data(**kwargs)
+        context['domain'] =  current_site = Site.objects.get_current().domain
+        return context
 
 
 
