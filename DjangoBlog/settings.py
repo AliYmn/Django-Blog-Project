@@ -39,9 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
-
     'blog',
-
     'mptt',
     'ckeditor',
     'ckeditor_uploader',
@@ -65,8 +63,7 @@ ROOT_URLCONF = 'DjangoBlog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,7 +140,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '')
 MEDIA_URL = '/media/'
 
 
-
 # config ckeditor
 CKEDITOR_CONFIGS = {
     'default': {
@@ -162,16 +158,16 @@ CKEDITOR_ALLOW_NONIMAGE_FILES = False
 AWS_QUERYSTRING_AUTH = False
 
 # ----------------Ayarlar------------------------ #
-#Resim kalitesi
+# Resim kalitesi
 IMAGE_QUALITY = 60
 # Küçük resim boyutu
-THUMBNAIL_SIZE=(300,300)
+THUMBNAIL_SIZE = (300, 300)
 
-#Api Key
+# Api Key
 DISQUS_API_KEY = 'ApiKey'
-#Subdomain
+# Subdomain
 DISQUS_WEBSITE_SHORTNAME = 'aliyaman'
 
-#Sıte ID, admin panelden sites bölümden bilgileri değişin.
+# Sıte ID, admin panelden sites bölümden bilgileri değişin.
 SITE_ID = 1
 # ----------------Ayarlar------------------------ #
